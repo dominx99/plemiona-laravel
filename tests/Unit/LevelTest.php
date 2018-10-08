@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Feature\Services;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ResourceCalculator extends TestCase
+class LevelTest extends TestCase
 {
     /**
      * A basic test example.

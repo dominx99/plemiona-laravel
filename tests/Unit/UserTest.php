@@ -4,14 +4,14 @@ namespace Tests\Feature;
 
 use App\User;
 use App\Village;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use Tests\Database;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use DatabaseMigrations, RefreshDatabase;
+    use Database, RefreshDatabase;
 
     /**
      * @test
@@ -120,6 +120,18 @@ class UserTest extends TestCase
         $villagesWithoutOwner = Village::where('user_id', 0)->count();
 
         $this->assertEquals(2, $villagesWithoutOwner);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function that_has_village_relation()
+    {
+        $user = factory(User::class)->make();
+
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $user->villages);
     }
 
     public function data_for_registration_that_has_to_pass()

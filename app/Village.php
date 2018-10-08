@@ -22,4 +22,9 @@ class Village extends Model
     {
         return $this->morphOne(Resource::class, 'resourcable');
     }
+
+    public function buildings()
+    {
+        return $this->belongsToMany(Building::class);
+    }
 }
