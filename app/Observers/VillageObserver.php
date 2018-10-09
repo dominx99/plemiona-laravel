@@ -33,7 +33,8 @@ class VillageObserver
 
         foreach (config('buildings.all') as $building) {
             $village->buildings()->attach(
-                $this->buildings->findByType($building['type'])->id
+                $this->buildings->findByType($building['type'])->id,
+                ['level' => $building['level']]
             );
         }
     }

@@ -12,4 +12,12 @@ class Building extends Model
     protected $fillable = [
         'name', 'type', 'color',
     ];
+
+    /**
+     * @return void
+     */
+    public function upgrade(): void
+    {
+        $this->pivot->increment('level');
+    }
 }

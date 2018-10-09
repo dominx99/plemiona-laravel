@@ -17,6 +17,7 @@ class CreateBuildingVillageTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('building_id');
             $table->unsignedBigInteger('village_id');
+            $table->integer('level');
             $table->timestamps();
         });
     }

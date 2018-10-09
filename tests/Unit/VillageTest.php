@@ -88,7 +88,7 @@ class VillageTest extends TestCase
 
         $this->assertEquals(
             1,
-            $this->villages->getBuildingLevel($village, 'fortress')
+            $this->villages->getBuildingLevelByType($village, 'fortress')
         );
     }
 }

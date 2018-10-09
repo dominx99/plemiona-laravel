@@ -17,16 +17,15 @@ class VillageRepository extends AbstractRepository
         return Village::where('x', $x)->where('y', $y)->exists();
     }
 
-    public function getBuildingByType(Village $village, string $type): Building
+    public function findBuildingByType(Village $village, string $type): Building
     {
         return $village->buildings()->where('type', $type)->first();
     }
 
-    public function getBuildingLevel(Village $village, string $type): int
+    public function getBuildingLevelByType(Village $village, string $type): int
     {
-        $building = $this->getBuildingByType($village, $type);
+        $building = $this->findBuildingByType($village, $type);
 
-        echo json_encode($building, JSON_PRETTY_PRINT);
-        die();
+        return $building->pivot->level;
     }
 }
