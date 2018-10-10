@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Http\Repositories\BuildingRepository;
 use App\Village;
+use App\Services\ResourcesManager;
 
 class VillageObserver
 {
@@ -13,11 +14,19 @@ class VillageObserver
     protected $buildings;
 
     /**
+     * @var \App\Services\ResourcesManager
+     */
+    protected $resourcesManager;
+
+    /**
      * @param \App\Http\Repositories\BuildingRepository $buildings
      */
-    public function __construct(BuildingRepository $buildings)
-    {
+    public function __construct(
+        BuildingRepository $buildings,
+        ResourcesManager $resourcesManager
+    ) {
         $this->buildings = $buildings;
+        $this->resourcesManager = $resourcesManager;
     }
 
     /**
@@ -37,5 +46,14 @@ class VillageObserver
                 ['level' => $building['level']]
             );
         }
+    }
+
+    /**
+     * @param \App\Village $village
+     * @return void
+     */
+    public function retrieved(Village $village): void
+    {
+        $this->resourcesManager->recalculate($village);
     }
 }

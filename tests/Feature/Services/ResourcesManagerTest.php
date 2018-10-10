@@ -32,10 +32,7 @@ class ResourcesManagerTest extends TestCase
         $expectedFood = $village->resources->food + $food;
         $expectedGold = $village->resources->gold + $gold;
 
-        $resourcesManager = app(ResourcesManager::class);
-
-        $resourcesManager->addFood($village, $food);
-        $resourcesManager->addGold($village, $gold);
+        $resourcesManager = app(ResourcesManager::class)->recalculate($village);
 
         $this->assertEquals($expectedFood, $village->resources->food);
         $this->assertEquals($expectedGold, $village->resources->gold);
