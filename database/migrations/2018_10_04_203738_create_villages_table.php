@@ -17,6 +17,7 @@ class CreateVillagesTable extends Migration
         Schema::create('villages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable()->default(null);
+            $table->string('slug');
             $table->string('name');
             $table->integer('x');
             $table->integer('y');
